@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mBtnOpenGallery;
     private Button mBtnUploadImage;
     private String imagePath;
-    private ActivityResultLauncher<Intent> resultFormGallary = registerForActivityResult(
+    private ActivityResultLauncher<Intent> resultFormGallery = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews() {
         mIvGallery = findViewById(R.id.imageView);
-        mBtnOpenGallery = findViewById(R.id.btnUpload);
-        mBtnUploadImage = findViewById(R.id.btnGallery);
+        mBtnOpenGallery = findViewById(R.id.btnGallery);
+        mBtnUploadImage = findViewById(R.id.btnUpload);
 
         mBtnOpenGallery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void OpenGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        resultFormGallary.launch(intent);
+        resultFormGallery.launch(intent);
     }
 
 
@@ -135,6 +135,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean isPermissionGranted(){
-        return ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+        return ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == 0;
     }
 }
